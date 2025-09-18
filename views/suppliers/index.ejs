@@ -1,0 +1,30 @@
+<h2>Suppliers</h2>
+<a href="/suppliers/add">Add New Supplier</a>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Actions</th>
+    </tr>
+    <% suppliers.forEach(supplier => { %>
+        <tr>
+            <td>
+                <%= supplier.name %>
+            </td>
+            <td>
+                <%= supplier.address %>
+            </td>
+            <td>
+                <%= supplier.phone %>
+            </td>
+            <td>
+                <a href="/suppliers/edit/<%= supplier._id %>">Edit</a>
+                <form class="delete-form" action="/suppliers/delete/<%= supplier._id %>?_method=DELETE" method="POST" style="display:inline">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+</table>

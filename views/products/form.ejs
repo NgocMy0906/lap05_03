@@ -1,0 +1,18 @@
+<h2>
+    <%= product._id ? 'Edit' : 'Add' %> Product</h2>
+<form action="<%= product._id ? '/products/edit/' + product._id + '?_method=PUT' : '/products/add' %>" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" value="<%= product.name || '' %>" required>
+    <label>Price:</label>
+    <input type="number" name="price" value="<%= product.price || '' %>" required>
+    <label>Quantity:</label>
+    <input type="number" name="quantity" value="<%= product.quantity || '' %>" required>
+    <label>Supplier:</label>
+    <select name="supplier" required>
+        <option value="">Select Supplier</option>
+        <% suppliers.forEach(s=>{ %>
+            <option value="<%= s._id %>" <%= product.supplier==s._id?'selected':'' %>><%= s.name %></option>
+        <% }) %>
+    </select>
+    <button type="submit"><%= product._id ? 'Update' : 'Create' %></button>
+</form>
